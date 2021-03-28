@@ -40,6 +40,11 @@ export default class Home extends React.Component {
 	Load() {
 		let local = JSON.parse(localStorage.getItem('data'));
 		let form = this.state.form;
+		local.entradas.sort((data1, data2) => {
+			let a = new Date(data1.data);
+			let b = new Date(data2.data);
+			return a - b;
+		})
 		form.formType = { "nome": "Salário", "tipo": "Entrada" };
 		this.setState({
 			local: local,
@@ -88,7 +93,6 @@ export default class Home extends React.Component {
 		let valor = parseFloat(form.formValue)
 
 		let data = {
-			"id": local.entradas.length > 0 ? local.entradas.length - 1 : 0,
 			"descricao": form.formName,
 			"categoria": form.formType,
 			"valor": valor,
@@ -97,13 +101,17 @@ export default class Home extends React.Component {
 
 
 		local.entradas.push(data);
+		local.entradas.sort((data1, data2) => {
+			let a = new Date(data1.data);
+			let b = new Date(data2.data);
+			return a - b;
+		})
 		localStorage.setItem('data', JSON.stringify(local));
 		this.LoadModal();
 		this.Load();
 	}
 	RemoveEntry(index) {
 		let localState = this.state.local;
-
 		localState.entradas.splice(index, 1);
 		localStorage.setItem('data', JSON.stringify(localState));
 		this.Load();
@@ -142,13 +150,14 @@ export default class Home extends React.Component {
 					</div>
 
 					<section className={styles.historyContainer}>
-						<h1>Historico</h1>
+						<h1>Histórico</h1>
 						<ul className={styles.history}>
 							{this.state.local.entradas.map((item, key) => {
 								let dia = new Date(item.data).getDate() + 1;
 								let mes = new Date(item.data).getMonth() + 1;
 								let ano = new Date(item.data).getFullYear();
 								let dataEntrada = dia + "/" + mes + '/' + ano;
+								console.log(key)
 								return <li key={key}>
 									<h3>{item.categoria.tipo}</h3>
 									<h3>{item.descricao}</h3>
