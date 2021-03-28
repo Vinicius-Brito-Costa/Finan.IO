@@ -1,0 +1,65 @@
+.container{
+    font-family: 'Inter';
+    position: relative;
+    display: block;
+    width: 350px;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: var(--radius);
+    box-sizing: border-box;
+    padding: 10px 20px;
+    margin: 5px;
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 255, 255, 0.111);
+    box-shadow: var(--shadow);
+}
+.info{
+    width: 80%;
+}
+.info div{
+    font-size: 34px;
+}
+.info h1{
+    font-size: 34px;
+    margin: 5px 0 5px;
+}
+.balance{
+    margin: auto;
+    width: 20%;
+    animation: balance-anim 2s infinite alternate  ease-in-out;
+}
+
+@keyframes balance-anim {
+    from { 
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+    };
+    to { 
+        -webkit-transform: scale(1);
+        transform: scale(1);
+     }
+}
+.profit{
+    margin: auto;
+    width: 20%;
+    animation: profit-anim 2s infinite alternate ease-in-out;
+}
+
+@keyframes profit-anim {
+    from { transform: translateY(-20%); };
+    to { transform: translateY(20%); }
+}
+.loss{
+    top: 0;
+    margin: auto;
+    width: 20%;
+    animation: loss-anim 2s infinite alternate ease-in-out;
+}
+
+@keyframes loss-anim {
+    from { transform: translateY(20%); };
+    to { transform: translateY(-20%); }
+}

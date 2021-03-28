@@ -1,0 +1,19 @@
+{
+    "saldo" : 0,
+    "entradas" : [
+        {
+            "nome"  : "",
+            "categoria"  : "",
+            "valor" : 0,
+            "data"  : ""
+        }
+    ],
+    "saidas": [
+        {
+            "nome"  : "",
+            "categoria"  : "",
+            "valor" : 0,
+            "data"  : ""
+        }
+    ]
+}
