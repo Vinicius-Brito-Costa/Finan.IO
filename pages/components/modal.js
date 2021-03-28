@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './../../styles/Modal.module.css';
-const log = console.log;
+
 export default class Modal extends React.Component {
     constructor(props) {
         super(props);

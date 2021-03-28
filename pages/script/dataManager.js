@@ -19,19 +19,19 @@ export function Create(){
             },
             {
                 "nome": "Contas",
-                "tipo": "Saida"
+                "tipo": "Saída"
             },
             {
                 "nome": "Lazer",
-                "tipo": "Saida"
+                "tipo": "Saída"
             },
             {
                 "nome": "Reserva de Emergência",
-                "tipo": "Reserva"
+                "tipo": "Saída"
             },
             {
                 "nome": "Investimentos e Estudos",
-                "tipo": "Entrada"
+                "tipo": "Saída"
             },
         ]
     }

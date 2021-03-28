@@ -11,10 +11,13 @@
     border-radius: var(--radius);
     box-sizing: border-box;
     padding: 10px 20px;
-    margin: 5px;
+    margin: 0px;
     backdrop-filter: blur(2px);
     border: 1px solid rgba(255, 255, 255, 0.111);
     box-shadow: var(--shadow);
+}
+.container:nth-of-type(2n){
+    margin: 0 15px; /*TEMPORARIO*/
 }
 .info{
     width: 80%;
@@ -23,7 +26,7 @@
     font-size: 34px;
 }
 .info h1{
-    font-size: 34px;
+    font-size: 28px;
     margin: 5px 0 5px;
 }
 .balance{

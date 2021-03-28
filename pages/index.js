@@ -12,7 +12,7 @@ export default class Home extends React.Component {
 			local: {
 				"entradas": [
 					{
-						"nome": "",
+						"descricao": "",
 						"categoria": "",
 						"valor": 0,
 						"data": ""
@@ -26,12 +26,24 @@ export default class Home extends React.Component {
 				"formType": {},
 				"formDate": ''
 			},
-			modal: false
+			modal: false,
+			menu: {
+				"ativo": false,
+				"index": 0,
+				"descricao": "",
+				"categoria": "",
+				"valor": 0,
+				"data": ''
+
+			}
 		}
 		this.Load = this.Load.bind(this);
 		this.LoadModal = this.LoadModal.bind(this);
 		this.HandleChange = this.HandleChange.bind(this);
 		this.SubmitModal = this.SubmitModal.bind(this);
+		this.LoadEntryMenu = this.LoadEntryMenu.bind(this);
+		this.SubmitEntryMenu = this.SubmitEntryMenu.bind(this);
+		this.RemoveEntry = this.RemoveEntry.bind(this);
 	}
 	componentDidMount() {
 		FirstTime();
@@ -45,7 +57,8 @@ export default class Home extends React.Component {
 			let b = new Date(data2.data);
 			return a - b;
 		})
-		form.formType = { "nome": "Salário", "tipo": "Entrada" };
+		if(form.formType === {}) form.formType = local.categorias[0];
+		
 		this.setState({
 			local: local,
 			form: form,
@@ -80,8 +93,11 @@ export default class Home extends React.Component {
 	}
 	HandleChange(e, input) {
 		let data = this.state.form;
-		let value = e.target.value;
-		if (input === "formType") value = JSON.parse(value);
+		let value = e;
+		if (input === "formType") {
+			value = JSON.parse(value);
+
+		}
 		data[input] = value;
 		this.setState({ form: data })
 
@@ -91,7 +107,7 @@ export default class Home extends React.Component {
 		let local = JSON.parse(localStorage.getItem('data'));
 		let form = this.state.form
 		let valor = parseFloat(form.formValue)
-
+		if(typeof form.formType === 'string') JSON.stringify(form.formType);
 		let data = {
 			"descricao": form.formName,
 			"categoria": form.formType,
@@ -106,14 +122,47 @@ export default class Home extends React.Component {
 			let b = new Date(data2.data);
 			return a - b;
 		})
-		localStorage.setItem('data', JSON.stringify(local));
+		this.Load();
 		this.LoadModal();
+	}
+	HandleChangeMenu(e, input) {
+		let data = this.state.menu;
+		let value = e.target.value;
+		if (input === "categoria") value = JSON.parse(value);
+		data[input] = value;
+		this.setState({ menu: data })
+
+	}
+	LoadEntryMenu(item, index) {
+		let menu = this.state.menu;
+		menu.ativo = !menu.ativo;
+		if (menu.ativo) {
+			menu.index = index;
+			menu.categoria = item.categoria;
+			menu.descricao = item.descricao;
+			menu.valor = item.valor;
+			menu.data = item.data;
+		}
+		this.setState({ menu: menu });
+	}
+	SubmitEntryMenu(e){
+		e.preventDefault();
+		let local = this.state.local;
+		local.entradas[this.state.menu.index] = {
+			"descricao": this.state.menu.descricao,
+			"categoria": this.state.menu.categoria,
+			"valor": parseFloat(this.state.menu.valor),
+			"data": this.state.menu.data
+		}
+		localStorage.setItem('data', JSON.stringify(local));
+		this.LoadEntryMenu();
 		this.Load();
 	}
-	RemoveEntry(index) {
+	RemoveEntry() {
 		let localState = this.state.local;
-		localState.entradas.splice(index, 1);
+		localState.entradas.splice(this.state.menu.index, 1);
 		localStorage.setItem('data', JSON.stringify(localState));
+		this.LoadEntryMenu();
 		this.Load();
 	}
 	render() {
@@ -134,16 +183,17 @@ export default class Home extends React.Component {
 							<img src='./image/plus.svg' />
 						</button>
 						<Modal modalOn={this.state.modal} blur='5'>
-							<button onClick={this.LoadModal} className={styles.modalCloseButton}>
-								<img src='./image/close.svg' />
-							</button>
+
 							<form onSubmit={this.SubmitModal} action='' className={styles.formAddEntry}>
-								<select id='categoria' onChange={(e) => this.HandleChange(e, 'formType')}>
-									{this.state.local.categorias.map((categoria, key) => <option key={key} value={JSON.stringify(categoria)}>{categoria.nome}</option>)}
+								<button type='button' onClick={this.LoadModal} className={styles.modalCloseButton}>
+									<img src='./image/close.svg' />
+								</button>
+								<select id='category' value={this.state.form.categoria} onChange={(e) => this.HandleChange(e.target.value, 'formType')}>
+									{this.state.local.categorias.map((categoria, key) => <option key={key} value={JSON.stringify(categoria)} style={{ background: categoria.tipo === 'Entrada' ? '#38c183' : '#e05f5f' }}>{categoria.nome}</option>)}
 								</select>
-								<input type='text' id='descricao' placeholder='Descrição' onChange={(e) => this.HandleChange(e, 'formName')} />
-								<input type='number' id='valor' placeholder='Valor' onChange={(e) => this.HandleChange(e, 'formValue')} pattern="[0-9]+([\.,][0-9]+)?" step="0.01" required />
-								<input type='date' id='data' onChange={(e) => this.HandleChange(e, 'formDate')} required />
+								<input type='text' id='descricao' placeholder='Descrição' onChange={(e) => this.HandleChange(e.target.value, 'formName')} />
+								<input type='number' id='valor' placeholder='Valor' onChange={(e) => this.HandleChange(e.target.value, 'formValue')} pattern="[0-9]+([\.,][0-9]+)?" step="0.01" required />
+								<input type='date' id='data' onChange={(e) => this.HandleChange(e.target.value, 'formDate')} required />
 								<button type='submit'>Registrar</button>
 							</form>
 						</Modal>
@@ -157,19 +207,41 @@ export default class Home extends React.Component {
 								let mes = new Date(item.data).getMonth() + 1;
 								let ano = new Date(item.data).getFullYear();
 								let dataEntrada = dia + "/" + mes + '/' + ano;
-								console.log(key)
 								return <li key={key}>
 									<h3>{item.categoria.tipo}</h3>
 									<h3>{item.descricao}</h3>
 									<h3>{item.categoria.nome}</h3>
 									<h3>{item.valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</h3>
 									<h3>{dataEntrada}</h3>
-									<button onClick={() => this.RemoveEntry(item.id)}>
-										<img src='./image/close.svg' />
+									<button onClick={() => this.LoadEntryMenu(item, key)}>
+										<img src='./image/more.svg' />
 									</button>
 								</li>
 							})}
 						</ul>
+						<Modal modalOn={this.state.menu.ativo}>
+							<form onSubmit={this.SubmitEntryMenu} action='' className={styles.formAddEntry}>
+								<button type='button' onClick={this.LoadEntryMenu} className={styles.modalCloseButton}>
+									<img src='./image/close.svg' />
+								</button>
+								<select id='edit-select-category' value={JSON.stringify(this.state.menu.categoria)} onChange={(e) => this.HandleChangeMenu(e, 'categoria')} >
+									{this.state.local.categorias.map(
+										(categoria, key) => <option key={key}
+																value={JSON.stringify(categoria)}
+																style={{ background: categoria.tipo === 'Entrada' ? '#38c183' : '#e05f5f' }}>
+																{categoria.nome}
+															</option>
+									)}
+								</select>
+								<input type='text' id='select-descricao' placeholder='Descrição' value={this.state.menu.descricao} onChange={(e) => this.HandleChangeMenu(e, 'descricao')} />
+								<input type='number' id='select-valor' placeholder='Valor' value={this.state.menu.valor} onChange={(e) => this.HandleChangeMenu(e, 'valor')} pattern="[0-9]+([\.,][0-9]+)?" step="0.01" required />
+								<input type='date' id='select-data' value={this.state.menu.data} onChange={(e) => this.HandleChangeMenu(e, 'data')} required />
+								<div>
+									<button type='submit'>Alterar</button>
+									<button type='button' onClick={this.RemoveEntry}>Remover</button>
+								</div>
+							</form>
+						</Modal>
 					</section>
 				</main>
 			</div>
