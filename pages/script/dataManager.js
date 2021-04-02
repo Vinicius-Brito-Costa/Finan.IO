@@ -33,110 +33,13 @@ export function Create(){
                 "nome": "Investimentos e Estudos",
                 "tipo": "Saída"
             },
-        ]
+        ],
+        "config": {
+            "date": {
+                "custom": false,
+                "date": "ano-mes-dia"
+            }
+        }
     }
     localStorage.setItem('data', JSON.stringify(data));
-}
-export function Balance(){
-    let local = JSON.parse(localStorage.getItem('data'));
-    let valor = 0;
-
-    if(local.entradas.length > 0) for(let entrada of local.entradas) valor += entrada.valor;
-    else valor += 0;
-    if(local.saidas.length > 0) for(let saida of local.saidas) valor -= saida.valor;
-    else valor -= 0;
-    
-    let data = {
-        'saldo'     : valor,
-        'entradas'  : local.entradas,
-        'saidas'    : local.saidas,
-        'categorias': local.categorias
-    }
-
-    localStorage.setItem('data', JSON.stringify(data));
-    log(valor);
-}
-export function AddProfit(profit){
-    let local = JSON.parse(localStorage.getItem('data'));
-    
-    local.entradas.push(profit);
-    log(local);
-    let data = {
-        'saldo'     : valor,
-        'entradas'  : local.entradas,
-        'saidas'    : local.saidas,
-        'categorias': local.categorias
-    }
-    localStorage.setItem('data', JSON.stringify(data));
-    Balance();
-}
-export function RemoveProfit(index){
-    let local = JSON.parse(localStorage.getItem('data'));
-    
-    local.entradas.splice(index, 1);
-    log(local);
-    let data = {
-        'saldo'     : valor,
-        'entradas'  : local.entradas,
-        'saidas'    : local.saidas,
-        'categorias': local.categorias
-    }
-    localStorage.setItem('data', JSON.stringify(data));
-    Balance();
-}
-export function AddLoss(profit){
-    let local = JSON.parse(localStorage.getItem('data'));
-    
-    local.saidas.push(profit);
-    log(local);
-    let data = {
-        'saldo'     : valor,
-        'entradas'  : local.entradas,
-        'saidas'    : local.saidas,
-        'categorias': local.categorias
-    }
-    localStorage.setItem('data', JSON.stringify(data));
-    Balance();
-}
-export function RemoveLoss(index){
-    let local = JSON.parse(localStorage.getItem('data'));
-    
-    local.saidas.splice(index, 1);
-    log(local);
-    let data = {
-        'saldo'     : valor,
-        'entradas'  : local.entradas,
-        'saidas'    : local.saidas,
-        'categorias': local.categorias
-    }
-    localStorage.setItem('data', JSON.stringify(data));
-    Balance();
-}
-export function AddCategory(category){
-    let local = JSON.parse(localStorage.getItem('data'));
-    
-    local.categorias.push(category);
-    log(local);
-    let data = {
-        'saldo'     : valor,
-        'entradas'  : local.entradas,
-        'saidas'    : local.saidas,
-        'categorias': local.categorias
-    }
-    localStorage.setItem('data', JSON.stringify(data));
-    Balance();
-}
-export function RemoveCategory(index){
-    let local = JSON.parse(localStorage.getItem('data'));
-    
-    local.categorias.splice(index, 1);
-    log(local);
-    let data = {
-        'saldo'     : valor,
-        'entradas'  : local.entradas,
-        'saidas'    : local.saidas,
-        'categorias': local.categorias
-    }
-    localStorage.setItem('data', JSON.stringify(data));
-    Balance();
 }

@@ -100,22 +100,34 @@
   font-size: 20px;
   height: 100%;
 }
-.formAddEntry option img{
-  width: 20px;
-  height: 20px;
-}
-.formAddEntry button[type='submit']{
-  border: rgba(255, 255, 255, 0.248) solid 1px;
+
+.formAddEntry button{
   color: white;
   font-weight: bold;
-  background: var(--green);
   margin-top: 30px;
   height: 50px;
   transition: all .5s ease-in-out;
   font-size: 24px;
 }
-.formAddEntry button[type='submit']:hover{
+.formAddEntry .buttons{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.formAddEntry .buttons button{
+  width: 48%;
+}
+.formAddEntry .add{
+  border: rgba(255, 255, 255, 0.248) solid 1px;
+  background: var(--green);
+}
+.formAddEntry .add:hover{
   background: #49d496;
+}
+
+.formAddEntry .delete {
+  border: rgba(255, 255, 255, 0.248) solid 1px;
+  background: var(--red);
 }
 
 .historyContainer{
@@ -125,6 +137,46 @@
 .historyContainer h1{
   margin: 5px 0 5px 20px;
   color: white;
+}
+.historyContainerFilter{
+  display: flex;
+  justify-content: space-between;
+}
+.formAddEntry .delete:hover {
+  background: #ec6c6c;
+}
+.historyFilter{
+  display: flex;
+  margin-right: 14px;
+}
+.historyFilter input, .historyFilter select{
+  outline: none;
+  color: white;
+  font-family: 'Inter';
+  font-size: 24px;
+  border: none;
+  background: transparent;
+}
+.historyFilter option{
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+.historyFilter div{
+  width: 2px;
+  height: 15px;
+  transform: translateX(-10px);
+  z-index: 0;
+  align-self: center;
+  background: white;
+}
+.historyFilter input[type=number]{
+  z-index: 1;
+  width: 75px;
+}
+.historyFilter select{
+  transform: translateX(-5px);
+  width: 75px;
 }
 .history{
   margin-top: 0;
@@ -136,6 +188,18 @@
   box-shadow: var(--shadow);
   border-radius: var(--radius);
   overflow: hidden;
+}
+.historyMenu div{
+  width: 100%;
+  margin: 0;
+  font-size: 17px;
+  font-weight: bold;
+}
+.historyMenu div:last-of-type{
+  margin: 10px 20px;
+  width: 0;
+  padding: 0px 10px;
+  height: 20px;
 }
 
 .history li{
@@ -161,10 +225,17 @@
 .history li:nth-of-type(2n+1):hover{
   background: rgba(0, 0, 0, 0.318);
 }
+.history li:first-of-type{
+  background: rgba(0, 0, 0, 0.618);
+}
+.history li:first-of-type:hover{
+  background: rgba(0, 0, 0, 0.618);
+}
 .history button{
   outline: none;
   align-self: center;
   height: 20px;
+  width: 20px;
   padding: 0;
   margin: 10px 20px;
   border: none;
