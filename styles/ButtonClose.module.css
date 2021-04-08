@@ -1,0 +1,21 @@
+.modalCloseButton{
+    cursor: pointer;
+    outline: none;
+    align-self: flex-end;
+    width: 30px;
+    height: 30px;
+    margin: 10px 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+}
+.modalCloseButton img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform .3s ease-in-out;
+}
+.modalCloseButton:hover img{
+  filter: brightness(150%);
+  transform: scale(1.2);
+}

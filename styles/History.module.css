@@ -1,0 +1,75 @@
+
+.modalOpenButton{
+    cursor: pointer;
+    outline: none;
+    align-self: center;
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    margin-left: 10px;
+    transform: translateY(1px);
+    border: none;
+    background-color: transparent;
+    filter: brightness(125%);
+  }
+  .modalOpenButton img{
+    transition: transform .3s ease-in-out;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .modalOpenButton:hover img{
+    filter: brightness(150%);
+    transform: scale(1.5);
+  }
+  .historyContainer{
+    margin: 0;
+    margin-top: 0;
+  }
+  .historyContainer h1{
+    margin: 5px 0 5px 20px;
+    color: white;
+  }
+  .historyContainerFilter{
+    display: flex;
+    justify-content: space-between;
+  }
+  .historyContainerFilter section{
+      display: flex;
+  }
+  .historyFilter{
+    display: flex;
+    margin-right: 14px;
+  }
+
+  .historyFilter input, .historyFilter select{
+    outline: none;
+    color: white;
+    font-family: 'Inter';
+    font-size: 24px;
+    border: none;
+    background: transparent;
+  }
+  .historyFilter option{
+    color: black;
+    margin: 0;
+    padding: 0;
+  }
+  .historyFilter div{
+    width: 2px;
+    height: 15px;
+    transform: translateX(-10px);
+    z-index: 0;
+    align-self: center;
+    background: white;
+  }
+  .historyFilter input[type=number]{
+    z-index: 1;
+    width: 75px;
+  }
+  .historyFilter select{
+    cursor: pointer;
+    transform: translateX(-5px);
+    width: 75px;
+  }
+  

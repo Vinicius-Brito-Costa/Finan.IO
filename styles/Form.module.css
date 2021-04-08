@@ -1,0 +1,71 @@
+.formAddEntry{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    justify-content: center;
+  }
+  .formAddEntry input{
+    font-size: 18px;
+    color: rgb(172, 170, 170);
+    height: 50px;
+    outline: none;
+    border: none;
+    border-top: solid rgb(228, 228, 228) 2px;
+    text-indent: 8px;
+  }
+  .formAddEntry input::placeholder{
+    color: rgb(172, 170, 170);
+  }
+  .formAddEntry input[type='date']{
+    color: rgb(172, 170, 170);
+    text-indent: 5px;
+  }
+  .formAddEntry select{
+    cursor: pointer;
+    outline: none;
+    font-size: 18px;
+    font-family: 'Arial';
+    color: rgb(172, 170, 170);
+    height: 50px;
+    text-indent: 8px;
+    border: none;
+  }
+  .formAddEntry select option{
+    color: white;
+    font-size: 20px;
+    height: 100%;
+  }
+  
+  .formAddEntry button{
+    color: white;
+    font-weight: bold;
+    margin-top: 30px;
+    height: 50px;
+    transition: all .5s ease-in-out;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .formAddEntry .buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .formAddEntry .buttons button{
+    width: 48%;
+  }
+  .formAddEntry .add{
+    border: rgba(255, 255, 255, 0.248) solid 1px;
+    background: var(--green);
+  }
+  .formAddEntry .add:hover{
+    background: #49d496;
+  }
+  
+  .formAddEntry .delete {
+    border: rgba(255, 255, 255, 0.248) solid 1px;
+    background: var(--red);
+  }
+  .formAddEntry .delete:hover {
+    background: #ec6c6c;
+  }

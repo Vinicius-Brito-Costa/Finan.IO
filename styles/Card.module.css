@@ -12,13 +12,17 @@
     box-sizing: border-box;
     padding: 10px 20px;
     margin: 0px;
+    border: var(--border);
     backdrop-filter: blur(2px);
-    border: 1px solid rgba(255, 255, 255, 0.111);
-    box-shadow: var(--shadow);
-    border-bottom: 0px;
-  border-right: 0px;
+    transition: all .5s ease-in-out;
 }
-.container:nth-of-type(2n){
+.container:hover{
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.151);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.254);
+    border-right: 1px solid rgba(0, 0, 0, 0.254);
+}
+.containerMiddle{
     margin: 0 15px; /*TEMPORARIO*/
 }
 .info{
@@ -67,4 +71,17 @@
 @keyframes loss-anim {
     from { transform: translateY(20%); };
     to { transform: translateY(-20%); }
+}
+.money{
+    top: 0;
+    margin: auto;
+    width: 20%;
+    transform: rotate(0deg);
+    animation: money-anim 2s infinite alternate ease-in-out;
+}
+
+@keyframes money-anim {
+    0% { transform: rotate(5deg); };
+    50%{ transform: rotate(0deg); }
+    100% { transform: rotate(-5deg); }
 }

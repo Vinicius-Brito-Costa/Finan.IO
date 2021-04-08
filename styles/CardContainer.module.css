@@ -1,0 +1,38 @@
+.container{
+    overflow: hidden;
+    transition: max-height .5s ease-in-out;
+}
+.cardContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.categoryContainer{
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.categoryButton{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: button 1.5s infinite alternate ease-in-out;
+    cursor: pointer;
+}
+.categoryButton img{
+    width: 20px;
+    margin: auto;
+    display: block;
+    transform: rotate(180deg);
+    transition: transform .2s ease-in-out;
+    
+}
+@keyframes button {
+    from { transform: translateY(0px);}
+    to { transform: translateY(5px);}
+}

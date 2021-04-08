@@ -11,7 +11,6 @@ export default class Modal extends React.Component {
 
     }
     componentDidUpdate(prevProps){
-        let modalOn = this.state.modalOn;
         if(this.props.modalOn !== prevProps.modalOn){
             this.ModalControl(this.props.modalOn);
         }
