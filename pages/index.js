@@ -6,7 +6,7 @@ import Card from '../components/card';
 import History from '../components/history';
 import Modal from '../components/modal';
 import { FirstTime } from './../script/dataManager';
-import ContextApi from './contextApi';
+import ContextApi from './../components/contextApi';
 import CardContainer from '../components/cardContainer';
 import ButtonClose from '../components/buttonClose';
 

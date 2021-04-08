@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from './modal';
 import styles from './../styles/History.module.css';
 import stylesForm from './../styles/Form.module.css';
-import ContextApi from '../pages/contextApi';
+import ContextApi from './contextApi';
 import HistoryList from './historyList';
 import ButtonClose from './buttonClose';
 class History extends React.Component {
