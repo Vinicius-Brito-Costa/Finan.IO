@@ -1,2 +1,3 @@
 import React from 'react';
-export const ContextApi = React.createContext();
+const ContextApi = React.createContext();
+export default ContextApi;
