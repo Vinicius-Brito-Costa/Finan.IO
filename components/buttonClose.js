@@ -1,4 +1,4 @@
-import styles from './../../styles/ButtonClose.module.css';
+import styles from './../styles/ButtonClose.module.css';
 export default function ButtonClose(props) {
 
     return (

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Card from './card';
-import styles from './../../styles/CardContainer.module.css';
+import styles from './../styles/CardContainer.module.css';
 import Modal from './modal';
 import HistoryList from './historyList';
 import ButtonClose from './buttonClose';

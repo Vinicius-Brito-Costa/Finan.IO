@@ -2,13 +2,13 @@ import Head from 'next/head';
 import React from 'react';
 import styles from '../styles/Home.module.css';
 import stylesForm from '../styles/Form.module.css';
-import Card from './components/card';
-import History from './components/history';
-import Modal from './components/modal';
+import Card from '../components/card';
+import History from '../components/history';
+import Modal from '../components/modal';
 import { FirstTime } from './../script/dataManager';
 import ContextApi from './contextApi';
-import CardContainer from './components/cardContainer';
-import ButtonClose from './components/buttonClose';
+import CardContainer from '../components/cardContainer';
+import ButtonClose from '../components/buttonClose';
 
 
 export default class Home extends React.Component {

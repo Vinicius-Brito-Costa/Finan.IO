@@ -1,4 +1,4 @@
-import styles from './../../styles/HistList.module.css';
+import styles from './../styles/HistList.module.css';
 export default function HistoryList(props) {
     const GetCurrentDate = (date) => {
         let d = new Date(date);
